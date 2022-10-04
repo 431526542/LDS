@@ -142,17 +142,22 @@
     <ClCompile Include="Arr.cpp" />
     <ClCompile Include="Arr1.cpp" />
     <ClCompile Include="ClassArr.cpp" />
+    <ClCompile Include="ClassTemplateArr.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="LinkedList1.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="main1.cpp" />
+    <ClCompile Include="main1.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="main2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arr.h" />
     <ClInclude Include="Arr1.h" />
     <ClInclude Include="ClassArr.h" />
+    <ClInclude Include="ClassTemplateArr.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedList1.h" />
   </ItemGroup>

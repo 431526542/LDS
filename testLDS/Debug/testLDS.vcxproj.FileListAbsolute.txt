@@ -1,1 +1,2 @@
 C:\work\study\testLDS\Debug\testLDS.exe
+C:\work\study\LDS\testLDS\Debug\testLDS.exe
