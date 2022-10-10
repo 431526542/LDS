@@ -1,3 +1,7 @@
-﻿  main2.cpp
-C:\work\study\LDS\testLDS\main2.cpp(11,11): warning C4244: 'return': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  testLDS.vcxproj -> C:\work\study\LDS\testLDS\Debug\testLDS.exe
+﻿  main4.cpp
+C:\work\study\LDS\testLDS\CList.h(18,1): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\work\study\LDS\testLDS\CList.h(23): message : 컴파일되는 클래스 템플릿 인스턴스화 'tListNode<T>'에 대한 참조를 확인하세요.
+C:\work\study\LDS\testLDS\CList.h(18,20): error C2143: 구문 오류: ','이(가) '&' 앞에 없습니다.
+C:\work\study\LDS\testLDS\CList.h(19,9): error C3861: '_data': 식별자를 찾을 수 없습니다.
+C:\work\study\LDS\testLDS\CList.h(19,23): error C3861: '_pPrev': 식별자를 찾을 수 없습니다.
+C:\work\study\LDS\testLDS\CList.h(19,38): error C3861: '_pNext': 식별자를 찾을 수 없습니다.
