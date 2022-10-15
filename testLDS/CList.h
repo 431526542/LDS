@@ -5,8 +5,8 @@ struct tListNode
 {
 public:
 	T			data;
-	tListNode* pPrev;
-	tListNode* pNext;
+	tListNode<T>* pPrev;
+	tListNode<T>* pNext;
 
 	//기본생성자
 	tListNode()
@@ -15,7 +15,7 @@ public:
 
 	}
 
-	tListNode(const* T& _data, tListNode<T>* _pPrev, tListNode<T>* _pNext)
+	tListNode(const T& _data, tListNode<T>* _pPrev, tListNode<T>* _pNext)
 		:data(_data),
 		pPrev(_pPrev),
 		pNext(_pNext)
