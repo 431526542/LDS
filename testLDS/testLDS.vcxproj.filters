@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="CBST">
+      <UniqueIdentifier>{9e26d26c-af6e-45e1-a310-28cef5279935}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -60,6 +63,9 @@
     <ClCompile Include="main6.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="main7.cpp">
+      <Filter>CBST</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arr.h">
@@ -91,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="CList2.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CBST.h">
+      <Filter>CBST</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
