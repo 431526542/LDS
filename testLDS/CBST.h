@@ -1,5 +1,7 @@
 #pragma once
 
+#include <assert.h>
+
 enum class NODE_TYPE
 {
 	PARENT, //0	
@@ -34,6 +36,57 @@ struct tBSTNode
 	//자식노드
 	tBSTNode* pLeftChiled;
 	tBSTNode* pRightChiled;*/
+	bool IsRoot()
+	{
+		if (arrNode[(int)NODE_TYPE::PARENT] == nullptr)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool IsLeftChild()
+	{
+		if(arrNode[(int)NODE_TYPE::PARENT]->arrNode[(int)NODE_TYPE::LCHILD] == this)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool IsRightChild()
+	{
+		if (arrNode[(int)NODE_TYPE::PARENT]->arrNode[(int)NODE_TYPE::RCHILD] == this)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool IsLeaf()
+	{
+		if (nullptr == arrNode[(int)NODE_TYPE::LCHILD] && nullptr == arrNode[(int)NODE_TYPE::RCHILD])
+			return true;
+		return false;
+	}
+
+	bool IsFull()
+	{
+		if (arrNode[(int)NODE_TYPE::LCHILD] && arrNode[(int)NODE_TYPE::RCHILD])
+			return true;
+		return false;
+	}
+
+
 
 	tBSTNode()
 		:Pair()
@@ -57,12 +110,18 @@ private:
 
 public:
 	bool insert(const tPair<T1, T2>& _pair);
+	tBSTNode<T1, T2>* GetInOrderSuccessor(tBSTNode<T1, T2>* _pNode);
+	tBSTNode<T1, T2>* GetInOrderPredecessor(tBSTNode<T1, T2>* _pNode);
 
 	class iterator;
 public:
 	iterator begin();
 	iterator end();
 	iterator find(const T1& _find);
+	iterator erase(const iterator& _iter);
+
+private:
+	tBSTNode<T1, T2>* DeleteNode(tBSTNode<T1, T2>* _pTargetNode);
 
 public:
 	CBST()
@@ -78,6 +137,47 @@ public:
 		tBSTNode<T1, T2>* m_pNode; //null인경우 end iterator
 
 	public:
+		// == 
+		bool operator == (const iterator& _other)
+		{
+			if (m_pBST == _other.m_pBST && m_pNode == _other.m_pNode)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		// !=
+		bool operator != (const iterator& _other)
+		{
+			return !(*this == _other);
+		}
+		// *
+		const tPair<T1, T2>& operator *()
+		{
+			//m_pNode nullper 체크 (end iterator인지 아닌지)
+			assert(m_pNode);
+
+			return m_pNode->Pair;
+		}
+		// ->
+		const tPair<T1, T2>* operator ->()
+		{
+			//m_pNode nullper 체크 (end iterator인지 아닌지)
+			assert(m_pNode);
+
+			return &m_pNode->Pair;
+		}
+		// ++
+		iterator& operator ++()
+		{
+			m_pNode = m_pBST->GetInOrderSuccessor(m_pNode);
+			return *this;
+		}
+
+	public:
 		iterator()
 			: m_pBST(nullptr)
 			, m_pNode(nullptr)
@@ -88,6 +188,7 @@ public:
 			, m_pNode(_pNode)
 		{}
 
+		friend class CBST<T1, T2>;
 	};
 };
 
@@ -146,6 +247,53 @@ inline bool CBST<T1, T2>::insert(const tPair<T1, T2>& _pair)
 }
 
 template<typename T1, typename T2>
+inline tBSTNode<T1, T2>* CBST<T1, T2>::GetInOrderSuccessor(tBSTNode<T1, T2>* _pNode)
+{
+	tBSTNode<T1, T2>* pSuccessor = nullptr;
+	//1. 오른쪽 자식이 있는 경우, 오른쪽 자식으로 가서, 왼쪽 자식이 없을때 까지 내려김
+	if (nullptr != _pNode->arrNode[(int)NODE_TYPE::RCHILD])
+	{
+		pSuccessor = _pNode->arrNode[(int)NODE_TYPE::RCHILD];
+
+		while (pSuccessor->arrNode[(int)NODE_TYPE::LCHILD])
+		{
+			pSuccessor = pSuccessor->arrNode[(int)NODE_TYPE::LCHILD];
+		}
+	}
+	//2. 부모로 부터 왼쪽자식일 때 까지 위로 올라감, 그때 부모가 후속자
+	else
+	{
+		pSuccessor = _pNode;
+
+		while (true)
+		{
+			//더이상 위쪽으로 올라갈 수 없다. -> 마지막 노드였다
+			if (pSuccessor->IsRoot())
+				return nullptr;
+			//부모로부터 왼쪽 자식인지 체크
+			if (pSuccessor->IsLeftChild())
+			{
+				//그때 부모가 후속자
+				pSuccessor = pSuccessor->arrNode[(int)NODE_TYPE::PARENT];
+				break;
+			}
+			else
+			{
+				pSuccessor = pSuccessor->arrNode[(int)NODE_TYPE::PARENT];
+			}
+		}
+	}
+
+	return pSuccessor;
+}
+
+template<typename T1, typename T2>
+inline tBSTNode<T1, T2>* CBST<T1, T2>::GetInOrderPredecessor(tBSTNode<T1, T2>* _pNode)
+{
+	return nullptr;
+}
+
+template<typename T1, typename T2>
 inline typename CBST<T1, T2>::iterator CBST<T1, T2>::begin()
 {
 	tBSTNode<T1, T2>* pNode = m_pRoot;
@@ -199,4 +347,71 @@ inline typename CBST<T1, T2>::iterator CBST<T1, T2>::find(const T1& _find)
 
 		return iterator(this, pNode);
 	}
+}
+
+template<typename T1, typename T2>
+inline typename CBST<T1, T2>::iterator CBST<T1, T2>::erase(const iterator& _iter)
+{
+	assert(this == _iter.m_pBST);
+
+	/*
+	//1.자식이 하나도 없는 경우
+	if (_iter.m_pNode->IsLeftChild())
+	{
+		//부모노드로 접근, 삭제될 노드인 자식을 가리키는 포인터를 nullptr로 만든다
+		if (_iter.m_pNode->IsChild())
+			_iter.m_pNode->arrNode[(int)NODE_TYPE::PARENT]->arrNode[(int)NODE_TYPE::LCHILD] = nullptr;
+		else
+			_iter.m_pNode->arrNode[(int)NODE_TYPE::PARENT]->arrNode[(int)NODE_TYPE::RCHILD] = nullptr;
+
+		delete _iter.m_pNode;
+	}*/
+
+	tBSTNode<T1,T2>* pSuccessor = DeleteNode(_iter.m_pNode);
+
+	return iterator(this, pSuccessor);
+}
+
+template<typename T1, typename T2>
+inline tBSTNode<T1, T2>* CBST<T1, T2>::DeleteNode(tBSTNode<T1, T2>* _pTargetNode)
+{
+	tBSTNode<T1, T2>* pSuccessor = nullptr;  
+
+	//1.자식이 하나도 없는 경우
+	if (_pTargetNode->IsLeaf())
+	{
+		//삭제시킬 노드의 후속자 노드를 찾아준다.
+		pSuccessor = GetInOrderPredecessor(_pTargetNode);
+
+		//삭제할 노드가 루트였다(자식이 없고 루트 => BST안에 데이터가 1개밖에 없었다)
+		if (_pTargetNode == m_pRoot)
+		{
+			m_pRoot == nullptr;
+		}
+		else
+		{
+			//부모노드로 접근, 삭제될 노드인 자식을 가리키는 포인터를 nullptr로 만든다
+			if (_pTargetNode->IsChild())
+				_pTargetNode->arrNode[(int)NODE_TYPE::PARENT]->arrNode[(int)NODE_TYPE::LCHILD] = nullptr;
+			else
+				_pTargetNode->arrNode[(int)NODE_TYPE::PARENT]->arrNode[(int)NODE_TYPE::RCHILD] = nullptr;
+		}
+
+		delete _pTargetNode;
+	}
+	//2.자식이2개인경우
+	else if (_pTargetNode->IsFull())
+	{
+
+	}
+	//3.자식이 1개인 경우
+	else
+	{
+
+	}
+
+	//데이터갯수 맞춰줌
+	--m_iCount;
+
+	return pSuccessor;
 }
