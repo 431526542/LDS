@@ -16,6 +16,9 @@
     <Filter Include="CBST">
       <UniqueIdentifier>{9e26d26c-af6e-45e1-a310-28cef5279935}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inheritance">
+      <UniqueIdentifier>{b6782d0c-51cb-45b3-956c-d13e58fe775e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -65,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="main7.cpp">
       <Filter>CBST</Filter>
+    </ClCompile>
+    <ClCompile Include="main9.cpp">
+      <Filter>Inheritance</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,56 @@
+﻿  Arr.cpp
+  Arr1.cpp
+  CArr.cpp
+  CArr1.cpp
+  ClassArr.cpp
+  ClassTemplateArr.cpp
+  LinkedList.cpp
+  LinkedList1.cpp
+  main.cpp
+  main1.cpp
+C:\work\study\LDS\testLDS\main1.cpp(11,11): warning C4244: 'return': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  main2.cpp
+C:\work\study\LDS\testLDS\main2.cpp(11,11): warning C4244: 'return': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  main3.cpp
+C:\work\study\LDS\testLDS\main3.cpp(16,23): warning C4305: '인수': 'double'에서 'const T'(으)로 잘립니다.
+          with
+          [
+              T=float
+          ]
+  main7.cpp
+C:\work\study\LDS\testLDS\CBST.h(389,12): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+C:\work\study\LDS\testLDS\CBST.h(377): message : 클래스 템플릿 멤버 함수 'tBSTNode<T1,T2> *CBST<T1,T2>::DeleteNode(tBSTNode<T1,T2> *)'을(를) 컴파일하는 중입니다.
+          with
+          [
+              T1=int,
+              T2=int
+          ]
+C:\work\study\LDS\testLDS\CBST.h(370): message : 컴파일되는 함수 템플릿 인스턴스화 'tBSTNode<T1,T2> *CBST<T1,T2>::DeleteNode(tBSTNode<T1,T2> *)'에 대한 참조를 확인하세요.
+          with
+          [
+              T1=int,
+              T2=int
+          ]
+C:\work\study\LDS\testLDS\CBST.h(197): message : 클래스 템플릿 멤버 함수 'bool CBST<int,int>::insert(const tPair<T1,T2> &)'을(를) 컴파일하는 중입니다.
+          with
+          [
+              T1=int,
+              T2=int
+          ]
+C:\work\study\LDS\testLDS\main7.cpp(16): message : 컴파일되는 함수 템플릿 인스턴스화 'bool CBST<int,int>::insert(const tPair<T1,T2> &)'에 대한 참조를 확인하세요.
+          with
+          [
+              T1=int,
+              T2=int
+          ]
+C:\work\study\LDS\testLDS\main7.cpp(14): message : 컴파일되는 클래스 템플릿 인스턴스화 'CBST<int,int>'에 대한 참조를 확인하세요.
+C:\work\study\LDS\testLDS\CBST.h(420,12): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+  코드를 생성하고 있습니다...
+C:\work\study\LDS\testLDS\CBST.h(350): warning C4715: 'CBST<int,int>::find': 모든 제어 경로에서 값을 반환하지는 않습니다.
+main1.obj : error LNK2005: main이(가) main.obj에 이미 정의되어 있습니다.
+main2.obj : error LNK2005: "int __cdecl Add(int,int)" (?Add@@YAHHH@Z)이(가) main1.obj에 이미 정의되어 있습니다.
+main2.obj : error LNK2005: "float __cdecl add(int,int)" (?add@@YAMHH@Z)이(가) main1.obj에 이미 정의되어 있습니다.
+main2.obj : error LNK2005: main이(가) main.obj에 이미 정의되어 있습니다.
+main3.obj : error LNK2005: main이(가) main.obj에 이미 정의되어 있습니다.
+main7.obj : error LNK2005: main이(가) main.obj에 이미 정의되어 있습니다.
+C:\work\study\LDS\testLDS\x64\Debug\testLDS.exe : fatal error LNK1169: 여러 번 정의된 기호가 있습니다.
